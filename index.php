@@ -1,22 +1,11 @@
 <?php
-$leng_pass = $_GET["lengpass"];
+include_once __DIR__ . "/partials/functions.php";
+$leng_pass = $_GET["lengpass"] ?? "";
 $leng_pass = intval($leng_pass);
 
-$valid_string = "ghugiuygloihBUIBUOHEWQBNC123456789,.-<>!?^*°-_";
+$result = generator_password($leng_pass);
 
-$result = generator_password($leng_pass, $valid_string);
 
-function generator_password($leng_pass, $valid_string)
-{
-    $result = "";
-    if ($leng_pass > 0) {
-        for ($i = 0; $i < $leng_pass; $i++) {
-
-            $result .= $valid_string[rand(0, strlen($valid_string)) - 1];
-        }
-        return $result;
-    }
-}
 
 
 ?>

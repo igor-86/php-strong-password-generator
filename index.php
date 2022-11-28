@@ -1,9 +1,12 @@
 <?php
 include_once __DIR__ . "/partials/functions.php";
+session_start();
 $leng_pass = $_GET["lengpass"] ?? "";
 $leng_pass = intval($leng_pass);
 
-$result = generator_password($leng_pass);
+if (!empty($leng_pass)) {
+    $_SESSION["lengpass"] = generator_password($leng_pass);
+}
 
 
 
@@ -30,10 +33,9 @@ $result = generator_password($leng_pass);
                 <button type="submit">Crea</button>
                 <button type="reset">Annulla</button>
             </div>
+            <a href="print.php">vedi</a>
         </form>
-        <div class="resalt">
-            <h2><?php echo $result; ?></h2>
-        </div>
+
     </main>
 </body>
 
